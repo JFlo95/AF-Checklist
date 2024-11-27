@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -23,25 +22,24 @@
 
         h1 {
             color: #2c3e50;
-            margin-bottom: 20px;
+            margin: 0 15px;
             text-align: left;
             font-size: 24px;
             user-select: none;
         }
 
         .progress-container {
-            margin: 10px 0;
+            margin: 0 15px 10px;
             background: #e0e0e0;
             border-radius: 25px;
             position: relative;
             height: 25px;
             overflow: hidden;
-            width: 100%;
         }
 
         .progress-bar {
             position: absolute;
-            left: 10px;
+            left: 0;
             top: 0;
             height: 100%;
             background: linear-gradient(90deg, #32b136, #0fdb00, #32b136);
@@ -52,12 +50,12 @@
 
         .progress-text {
             position: relative;
+            width: 100%;
             text-align: right;
             padding-right: 15px;
             line-height: 25px;
             color: #000000;
             z-index: 1;
-            font-size: 14px;
             user-select: none;
         }
 
@@ -70,9 +68,8 @@
         }
 
         .section {
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2c3e50;
         }
 
         .section-header {
@@ -88,7 +85,7 @@
         }
 
         .section-header:active {
-            background-color: #f0f0f0;
+            background-color: #e2e2e2;
         }
 
         .section-header h2 {
@@ -120,22 +117,20 @@
 
         .step {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin: 5px 0;
-            padding: 10px 15px;
+            padding: 5px;
             border-radius: 4px;
             transition: background-color 0.3s;
-        }
-
-        .step:active {
-            background-color: #f0f0f0;
+            cursor: pointer;
+            align-items: center;
         }
 
         .checkbox-wrapper {
             position: relative;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 24px;
         }
 
         .step input[type="checkbox"] {
@@ -151,7 +146,7 @@
             cursor: pointer;
             flex: 1;
             margin-right: 10px;
-            font-size: 16px;
+            font-size: 20px;
             word-wrap: break-word;
             line-height: 1.5;
             color: #333;
@@ -169,14 +164,17 @@
         .step .step-link {
             text-decoration: none;
             color: #007bff;
+            background-color: #e8f0ff;
             font-size: 14px;
             padding: 5px 10px;
             border-radius: 4px;
             user-select: none;
+            align-self: top;
+            white-space: nowrap;
         }
 
         .step .step-link:active {
-            background-color: #e8f0ff;
+            background-color: #b7d0ff;
         }
 
         .sub-steps {
@@ -188,6 +186,28 @@
 
         .parent-step.expanded+.sub-steps {
             max-height: max-content;
+        }
+
+        .expand-icon {
+            position: absolute;
+            right: 10px;
+            bottom: 0px;
+            font-size: 8px;
+            background: white;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+            color: #666;
+            user-select: none;
+            touch-action: manipulation;
+        }
+
+        .expanded .expand-icon {
+            transform: rotate(180deg);
         }
 
         @media (max-width: 800px) {
@@ -206,29 +226,14 @@
             .sub-steps {
                 margin-left: 15px;
             }
-        }
 
-        .expand-icon {
-            position: absolute;
-            right: 10px;
-            bottom: 0px;
-            font-size: 8px;
-            background: white;
-            border-radius: 50%;
-            width: 12px;
-            height: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s;
-            box-shadow: 0 0 0 1px #d3d3d3;
-            color: #666;
-            user-select: none;
-            touch-action: manipulation;
-        }
+            .collapse-icon {
+                font-size: 14px;
+            }
 
-        .expanded .expand-icon {
-            transform: rotate(180deg);
+            .expand-icon {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -260,7 +265,6 @@
                 <div class="sub-steps">
                     <div class="step">
                         <input type="checkbox" id="substep1">
-                        <!--  -->
                         <label for="substep1">Configure development environment</label>
                         <a href="https://www.google.com" class="step-link">More info</a>
                     </div>
