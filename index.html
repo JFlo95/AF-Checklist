@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Interactive Checklist</title>
+    <title>AF Checklist</title>
     <style>
         * {
             box-sizing: border-box;
@@ -69,7 +69,8 @@
 
         .section {
             margin-bottom: 10px;
-            border-bottom: 1px solid #2c3e50;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #666;
         }
 
         .section-header {
@@ -133,13 +134,17 @@
             min-width: 24px;
         }
 
+        .parent-step.partial input[type="checkbox"] {
+            accent-color: #e0e0e0;
+        }
+
         .step input[type="checkbox"] {
             margin-right: 15px;
             width: 24px;
             height: 24px;
             cursor: pointer;
             touch-action: manipulation;
-            accent-color: #0fdb00;
+            accent-color: #32b136;
         }
 
         .step label {
@@ -227,22 +232,77 @@
                 margin-left: 15px;
             }
 
-            .collapse-icon {
-                font-size: 14px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 15px;
+        }
+
+        .print-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .print-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 20px;
             }
 
-            .expand-icon {
-                font-size: 14px;
+            .print-button {
+                display: none;
+            }
+
+            .progress-container {
+                display: none;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+
+            .collapse-icon {
+                display: none;
+            }
+
+            .section.collapsed .section-content {
+                max-height: none !important;
+                overflow: visible;
+            }
+
+            .sub-steps {
+                max-height: none !important;
+                overflow: visible;
+            }
+
+            .step-link {
+                display: none;
             }
         }
+
     </style>
 </head>
 
 <body>
-    <h1>My Checklist</h1>
+    <div class="header-container">
+        <h1>My Checklist</h1>
+        <button class="print-button" title="Print checklist">🖨️</button>
+    </div>
     <div class="progress-container">
         <div class="progress-bar"></div>
-        <div class="progress-text">0/6 (0%)</div>
+        <div class="progress-text">Progress Bar (0%)</div>
     </div>
     <div class="checklist">
         <div class="section">
@@ -278,6 +338,11 @@
                         <label for="substep3">Set up version control</label>
                         <a href="#" class="step-link">More info</a>
                     </div>
+                </div>
+                <div class="step">
+                    <input type="checkbox" id="step5">
+                    <label for="step5">This is a test step</label>
+                    <a href="#" class="step-link">More info</a>
                 </div>
             </div>
         </div>
@@ -343,10 +408,14 @@
         });
 
         function updateParentCheckbox() {
-            const allChecked = Array.from(subSteps).every(checkbox => checkbox.checked);
-            parentCheckbox.checked = allChecked;
-            parentStep.classList.toggle('completed', allChecked);
-        }
+            const checkedCount = Array.from(subSteps).filter(checkbox => checkbox.checked).length;
+            const isAllChecked = checkedCount === subSteps.length;
+            const isPartial = checkedCount > 0 && !isAllChecked;
+            
+            parentCheckbox.checked = isPartial || isAllChecked;
+            parentStep.classList.toggle('completed', isAllChecked);
+            parentStep.classList.toggle('partial', isPartial);
+        }   
 
         function updateProgress() {
             const regularSteps = document.querySelectorAll('.step:not(.parent-step) input[type="checkbox"]').length;
@@ -364,6 +433,7 @@
                 step.classList.toggle('completed', checkbox.checked);
                 updateParentCheckbox();
                 updateProgress();
+                saveProgress();
             });
         });
 
@@ -374,10 +444,45 @@
                     checkbox.addEventListener('change', () => {
                         step.classList.toggle('completed', checkbox.checked);
                         updateProgress();
+                        saveProgress();
                     });
                 }
             }
         });
+
+        document.querySelector('.print-button').addEventListener('click', () => {
+            window.print();
+        });
+        
+        function saveProgress() {
+            const checkboxStates = {};
+            document.querySelectorAll('.step input[type="checkbox"]').forEach(checkbox => {
+                checkboxStates[checkbox.id] = checkbox.checked;
+            });
+            localStorage.setItem('checklistProgress', JSON.stringify(checkboxStates));
+        }
+
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('checklistProgress');
+            if (savedProgress) {
+                const checkboxStates = JSON.parse(savedProgress);
+                Object.entries(checkboxStates).forEach(([id, isChecked]) => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = isChecked;
+                        const step = checkbox.closest('.step');
+                        if (step) {
+                            step.classList.toggle('completed', isChecked);
+                        }
+                    }
+                });
+                updateParentCheckbox();
+                updateProgress();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadProgress);
+
     </script>
 </body>
 
