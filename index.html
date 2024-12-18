@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Counter Fascism Checklist</title>
+    <title>The Ultimate Fascist Resistor List</title>
     <style>
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: #f0f0f0;
+        }
+
+        html {
+            scrollbar-gutter: stable;
         }
 
         body {
@@ -20,12 +25,56 @@
             height: 100vh;
         }
 
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin: 0 15px;
+        }
+
         h1 {
             color: #2c3e50;
-            margin: 0 15px;
+            margin: 0 4px;
             text-align: left;
             font-size: 24px;
             user-select: none;
+        }
+
+        p {
+            margin-bottom: 3px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;  /* Space between buttons */
+        }
+
+        .donate-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .donate-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .print-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .print-button:hover {
+            background-color: #e0e0e0;
         }
 
         .progress-container {
@@ -78,7 +127,7 @@
             align-items: center;
             cursor: pointer;
             padding: 10px;
-            background-color: #f8f9fa;
+            background-color: #dedede;
             border-radius: 4px;
             margin-bottom: 10px;
             user-select: none;
@@ -135,7 +184,23 @@
         }
 
         .parent-step.partial input[type="checkbox"] {
-            accent-color: #e0e0e0;
+            appearance: none;
+            background: gold;
+            background-image: linear-gradient(to right,
+                transparent 25%,
+                black 25%,
+                black 75%,
+                transparent 75%
+            );
+            background-position: center;
+            background-size: 22px 3px;
+            background-repeat: no-repeat;
+            border-radius: 2px;
+        }
+        
+        .parent-step.partial label {
+            color: #666;
+            font-style: italic;
         }
 
         .step input[type="checkbox"] {
@@ -144,7 +209,8 @@
             height: 24px;
             cursor: pointer;
             touch-action: manipulation;
-            accent-color: #32b136;
+            accent-color: #52da1d;
+            border-radius: 2px;
         }
 
         .step label {
@@ -162,8 +228,10 @@
         }
 
         .step.completed label {
-            color: #666;
+            color: #000000;
             text-decoration: line-through;
+            opacity: 0.3;
+            font-style: italic;
         }
         
         .step .step-link {
@@ -220,6 +288,10 @@
                 padding: 0px;
             }
 
+            .mobile-break {
+                display: inline;
+            }
+
             .step {
                 align-items: flex-start;
             }
@@ -232,29 +304,18 @@
                 margin-left: 15px;
             }
 
+            .button-group {
+                align-self: flex-end;
+                margin-top: -30px;
+            }
         }
 
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0 15px;
+        @media (min-width: 801px) {
+            .mobile-break {
+                display: none;
+            }
         }
-
-        .print-button {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 4px;
-            transition: background-color 0.2s;
-        }
-
-        .print-button:hover {
-            background-color: #e0e0e0;
-        }
-
+        
         @media print {
             body {
                 background-color: white;
@@ -262,6 +323,10 @@
             }
 
             .print-button {
+                display: none;
+            }
+
+            .donate-button {
                 display: none;
             }
 
@@ -277,14 +342,46 @@
                 display: none;
             }
 
+            .expand-icon {
+                display: none;
+            }
+
             .section.collapsed .section-content {
                 max-height: none !important;
                 overflow: visible;
             }
 
+            .step.completed label {
+                color: #333;
+                text-decoration: line-through;
+                opacity: 1;
+                font-style: normal;
+            }
+
+            .parent-step.partial input[type="checkbox"] {
+                background: white;
+                border: solid 1px grey;
+            }
+
+            .step.completed input[type="checkbox"]:checked::after {
+                content: '✔';
+                position: relative;
+                right: 3px;
+                bottom: 9px;
+                font-size: 35px;
+                font-style: oblique;
+                line-height: 1;
+            }
+
             .sub-steps {
                 max-height: none !important;
                 overflow: visible;
+            }
+
+            .step input[type="checkbox"] {
+                appearance: none;
+                background: white;
+                border: solid 1px grey;
             }
 
             .step-link {
@@ -297,8 +394,12 @@
 
 <body>
     <div class="header-container">
-        <h1>Counter Fascism Checklist</h1>
-        <button class="print-button" title="Print checklist">🖨️</button>
+        <h1>The Ultimate <br class="mobile-break">Fascist Resistor List</h1>
+        <p>Check even if n/a</p>
+        <div class="button-group">
+            <button class="donate-button" title="Support this project">🎁</button>
+            <button class="print-button" title="Print checklist">🖨️</button>
+        </div>
     </div>
     <div class="progress-container">
         <div class="progress-bar"></div>
@@ -321,6 +422,7 @@
                             Set up project infrastructure
                         </div>
                     </label>
+                    <a href="#" class="step-link">More info</a>
                 </div>
                 <div class="sub-steps">
                     <div class="step">
@@ -340,8 +442,8 @@
                     </div>
                 </div>
                 <div class="step">
-                    <input type="checkbox" id="step5">
-                    <label for="step5">This is a test step</label>
+                    <input type="checkbox" id="step2">
+                    <label for="step2">This is a test step</label>
                     <a href="#" class="step-link">More info</a>
                 </div>
             </div>
@@ -354,18 +456,51 @@
             </div>
             <div class="section-content">
                 <div class="step">
-                    <input type="checkbox" id="step2">
-                    <label for="step2">Create project timeline and set milestones</label>
-                    <a href="#" class="step-link">More info</a>
-                </div>
-                <div class="step">
                     <input type="checkbox" id="step3">
-                    <label for="step3">Schedule kickoff meeting with team members</label>
+                    <label for="step3">Create project timeline and set milestones</label>
                     <a href="#" class="step-link">More info</a>
                 </div>
                 <div class="step">
                     <input type="checkbox" id="step4">
-                    <label for="step4">Review and finalize project budget</label>
+                    <label for="step4">Schedule kickoff meeting with team members</label>
+                    <a href="#" class="step-link">More info</a>
+                </div>
+                <div class="step">
+                    <input type="checkbox" id="step5">
+                    <label for="step5">Review and finalize project budget</label>
+                    <a href="#" class="step-link">More info</a>
+                </div>
+                <div class="step parent-step" id="parentStep">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="step6">
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <label for="step6">
+                        <div class="label-content">
+                            Set up project infrastructure
+                        </div>
+                    </label>
+                </div>
+                <div class="sub-steps">
+                    <div class="step">
+                        <input type="checkbox" id="step6substep1">
+                        <label for="step6substep1">Configure development environment</label>
+                        <a href="https://www.google.com" class="step-link">More info</a>
+                    </div>
+                    <div class="step">
+                        <input type="checkbox" id="step6substep2">
+                        <label for="step6substep2">Install required dependencies</label>
+                        <a href="#" class="step-link">More info</a>
+                    </div>
+                    <div class="step">
+                        <input type="checkbox" id="step6substep3">
+                        <label for="step6substep3">Set up version control</label>
+                        <a href="#" class="step-link">More info</a>
+                    </div>
+                </div>
+                <div class="step">
+                    <input type="checkbox" id="step7">
+                    <label for="step7">This is a test step</label>
                     <a href="#" class="step-link">More info</a>
                 </div>
             </div>
@@ -373,10 +508,8 @@
     </div>
 
     <script>
-        const parentStep = document.querySelector('.parent-step');
-        const parentCheckbox = parentStep.querySelector('input[type="checkbox"]');
-        const labelContent = document.querySelector('.label-content');
-        const subSteps = document.querySelectorAll('.sub-steps .step input[type="checkbox"]');
+        // Initialize all required elements
+        const parentSteps = document.querySelectorAll('.parent-step');
         const allSteps = document.querySelectorAll('.step');
         const progressBar = document.querySelector('.progress-bar');
         const progressText = document.querySelector('.progress-text');
@@ -390,53 +523,60 @@
             });
         });
 
-        function toggleExpand(e) {
-            e.preventDefault();
-            parentStep.classList.toggle('expanded');
-        }
+        // Setup parent steps functionality
+        parentSteps.forEach(parentStep => {
+            const parentCheckbox = parentStep.querySelector('input[type="checkbox"]');
+            const labelContent = parentStep.querySelector('.label-content');
+            const subSteps = parentStep.nextElementSibling.querySelectorAll('.step input[type="checkbox"]');
+            const expandIcon = parentStep.querySelector('.expand-icon');
 
-        labelContent.addEventListener('click', toggleExpand);
+            // Function to toggle expansion
+            const toggleExpand = (e) => {
+                e.preventDefault();
+                parentStep.classList.toggle('expanded');
+            };
 
-        parentCheckbox.addEventListener('click', (e) => {
-            toggleExpand(e);
-            e.target.checked = Array.from(subSteps).every(checkbox => checkbox.checked);
-        });
+            // Add click listeners
+            labelContent.addEventListener('click', toggleExpand);
+            expandIcon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleExpand(e);
+            });
 
-        document.querySelector('.expand-icon').addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleExpand(e);
-        });
+            // Update parent checkbox based on substeps
+            const updateParentState = () => {
+                const checkedCount = Array.from(subSteps).filter(checkbox => checkbox.checked).length;
+                const isAllChecked = checkedCount === subSteps.length;
+                const isPartial = checkedCount > 0 && !isAllChecked;
+                
+                parentCheckbox.checked = isPartial || isAllChecked;
+                parentStep.classList.toggle('completed', isAllChecked);
+                parentStep.classList.toggle('partial', isPartial);
+            };
 
-        function updateParentCheckbox() {
-            const checkedCount = Array.from(subSteps).filter(checkbox => checkbox.checked).length;
-            const isAllChecked = checkedCount === subSteps.length;
-            const isPartial = checkedCount > 0 && !isAllChecked;
-            
-            parentCheckbox.checked = isPartial || isAllChecked;
-            parentStep.classList.toggle('completed', isAllChecked);
-            parentStep.classList.toggle('partial', isPartial);
-        }   
+            // Add change listeners to substeps
+            subSteps.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    const step = checkbox.closest('.step');
+                    step.classList.toggle('completed', checkbox.checked);
+                    updateParentState();
+                    updateProgress();
+                    saveProgress();
+                });
+            });
 
-        function updateProgress() {
-            const regularSteps = document.querySelectorAll('.step:not(.parent-step) input[type="checkbox"]').length;
-            const completed = document.querySelectorAll('.step:not(.parent-step) input[type="checkbox"]:checked').length;
-            const total = regularSteps;
-            const percentage = Math.round((completed / total) * 100);
-
-            progressBar.style.width = `${percentage}%`;
-            progressText.textContent = `${completed}/${total} (${percentage}%)`;
-        }
-
-        subSteps.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-                const step = checkbox.closest('.step');
-                step.classList.toggle('completed', checkbox.checked);
-                updateParentCheckbox();
+            // Parent checkbox click handler
+            parentCheckbox.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleExpand(e);
+                parentCheckbox.checked = Array.from(subSteps).every(checkbox => checkbox.checked);
+                updateParentState();
                 updateProgress();
                 saveProgress();
             });
         });
 
+        // Handle regular steps
         allSteps.forEach(step => {
             if (!step.classList.contains('parent-step')) {
                 const checkbox = step.querySelector('input[type="checkbox"]');
@@ -450,10 +590,18 @@
             }
         });
 
-        document.querySelector('.print-button').addEventListener('click', () => {
-            window.print();
-        });
-        
+        // Update progress bar
+        function updateProgress() {
+            const regularSteps = document.querySelectorAll('.step:not(.parent-step) input[type="checkbox"]').length;
+            const completed = document.querySelectorAll('.step:not(.parent-step) input[type="checkbox"]:checked').length;
+            const total = regularSteps;
+            const percentage = Math.round((completed / total) * 100);
+
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `${completed}/${total} (${percentage}%)`;
+        }
+
+        // Save progress to localStorage
         function saveProgress() {
             const checkboxStates = {};
             document.querySelectorAll('.step input[type="checkbox"]').forEach(checkbox => {
@@ -462,6 +610,7 @@
             localStorage.setItem('checklistProgress', JSON.stringify(checkboxStates));
         }
 
+        // Load progress from localStorage
         function loadProgress() {
             const savedProgress = localStorage.getItem('checklistProgress');
             if (savedProgress) {
@@ -473,16 +622,37 @@
                         const step = checkbox.closest('.step');
                         if (step) {
                             step.classList.toggle('completed', isChecked);
+                            // If this is a substep and it's checked, expand its parent
+                            const parentStep = step.closest('.sub-steps')?.previousElementSibling;
+                            if (parentStep && isChecked) {
+                                parentStep.classList.add('expanded');
+                            }
                         }
                     }
                 });
-                updateParentCheckbox();
+                // Update all parent states
+                parentSteps.forEach(parentStep => {
+                    const subSteps = parentStep.nextElementSibling.querySelectorAll('.step input[type="checkbox"]');
+                    const checkedCount = Array.from(subSteps).filter(checkbox => checkbox.checked).length;
+                    const isAllChecked = checkedCount === subSteps.length;
+                    const isPartial = checkedCount > 0 && !isAllChecked;
+                    
+                    const parentCheckbox = parentStep.querySelector('input[type="checkbox"]');
+                    parentCheckbox.checked = isPartial || isAllChecked;
+                    parentStep.classList.toggle('completed', isAllChecked);
+                    parentStep.classList.toggle('partial', isPartial);
+                });
                 updateProgress();
             }
         }
 
-        document.addEventListener('DOMContentLoaded', loadProgress);
+        // Print functionality
+        document.querySelector('.print-button').addEventListener('click', () => {
+            window.print();
+        });
 
+        // Load progress when page loads
+        document.addEventListener('DOMContentLoaded', loadProgress);
     </script>
 </body>
 
