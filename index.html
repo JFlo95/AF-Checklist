@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The Ultimate Fascist Resistor List</title>
+    <title>The Ultimate Resistance Readiness Guide</title>
     <style>
         * {
             box-sizing: border-box;
@@ -175,7 +175,7 @@
             border-radius: 4px;
             transition: background-color 0.3s;
             cursor: pointer;
-            align-items: center;
+            align-items: flex-start;
         }
 
         .checkbox-wrapper {
@@ -214,20 +214,26 @@
             touch-action: manipulation;
             accent-color: #52da1d;
             border-radius: 2px;
+            margin-top: 0px;
         }
 
         .step label {
             cursor: pointer;
             flex: 1;
-            margin-right: 10px;
-            font-size: 20px;
+            margin-right: 16px;
+            margin-top: 3px;
+            font-size: 18px;
             word-wrap: break-word;
-            line-height: 1.5;
+            line-height: 1;
             color: #333;
             display: flex;
             align-items: center;
             user-select: none;
             touch-action: manipulation;
+        }
+
+        .step:not(:has(.step-link)) label {
+            margin-right: 110px;
         }
 
         .step.completed label {
@@ -242,11 +248,23 @@
             color: #007bff;
             background-color: #e8f0ff;
             font-size: 10px;
-            padding: 5px 10px;
+            padding: 5px 5px;
             border-radius: 4px;
             user-select: none;
-            align-self: top;
-            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            width: 100px;
+            justify-content: space-between;
+            gap: 4px;
+            line-height: 1;
+        }
+
+        .step .step-link::after {
+            content: "↗";
+            font-size: 16px;
+            line-height: 0;
+            position: relative;
+            top: -2px;
         }
 
         .step .step-link:active {
@@ -277,7 +295,7 @@
             align-items: center;
             justify-content: center;
             transition: transform 0.3s;
-            color: #007bff;
+            color: #666;
             user-select: none;
             touch-action: manipulation;
         }
@@ -289,10 +307,6 @@
         @media (max-width: 800px) {
             body {
                 padding: 0px;
-            }
-
-            .step {
-                align-items: flex-start;
             }
 
             .checkbox-wrapper {
@@ -383,7 +397,7 @@
 
 <body>
     <div class="header-container">
-        <h1>The Ultimate Fascist Resistor List</h1>
+        <h1>The Ultimate Resistance Readiness Guide</h1>
         <p>Check even if n/a</p>
         <div class="button-group">
             <button class="donate-button" title="Support this project">🎁</button>
@@ -415,20 +429,20 @@
                     <label for="C4">
                         <div class="label-content">Use Signal for secure messaging</div>
                     </label>
-                    <a href="https://www.privacyguides.org/en/real-time-communication/?h=real" target="_blank" rel="noopener" class="step-link">Why Signal?↗</a>
+                    <a href="https://www.privacyguides.org/en/real-time-communication/?h=real" target="_blank" rel="noopener" class="step-link">Why Signal?</a>
                 </div>
                 <div class="sub-steps">
                     <div class="step">
                         <input type="checkbox" id="D5">
                         <label for="D5">Get the Signal App</label>
-                        <a href="https://signal.org/download" target="_blank" rel="noopener" class="step-link">Download Signal App↗</a>
+                        <a href="https://signal.org/download" target="_blank" rel="noopener" class="step-link">Download Signal App</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D6">
                         <label for="D6">Note the extra security features and use as desired</label>
-                        <a href="https://www.privacyguides.org/articles/2022/07/07/signal-configuration-and-hardening/" target="_blank" rel="noopener" class="step-link">Signal Hardening Guide↗</a>
+                        <a href="https://www.privacyguides.org/articles/2022/07/07/signal-configuration-and-hardening/" target="_blank" rel="noopener" class="step-link">Signal Hardening Guide</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 </div>
@@ -441,13 +455,13 @@
                     <label for="C7">
                         <div class="label-content">Use Proton for secure email, etc.</div>
                     </label>
-                    <a href="https://www.privacyguides.org/en/email/#openpgp-compatible-services" target="_blank" rel="noopener" class="step-link">Why Proton?↗</a>
+                    <a href="https://www.privacyguides.org/en/email/#openpgp-compatible-services" target="_blank" rel="noopener" class="step-link">Why Proton?</a>
                 </div>
                 <div class="sub-steps">
                     <div class="step">
                         <input type="checkbox" id="D8">
                         <label for="D8">Make a long master password you'll remember but is hard to guess</label>
-                        <a href="https://account.proton.me/signup" target="_blank" rel="noopener" class="step-link">Sign up for Proton↗</a>
+                        <a href="https://account.proton.me/signup" target="_blank" rel="noopener" class="step-link">Sign up for Proton</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
@@ -466,13 +480,13 @@
                     <label for="C10">
                         <div class="label-content">Use ProtonPass to secure your passwords</div>
                     </label>
-                    <a href="https://www.privacyguides.org/en/basics/passwords-overview/" target="_blank" rel="noopener" class="step-link">Password Best Practices↗</a>
+                    <a href="https://www.privacyguides.org/en/basics/passwords-overview/" target="_blank" rel="noopener" class="step-link">Password Best Practices</a>
                 </div>
                 <div class="sub-steps">
                     <div class="step">
                         <input type="checkbox" id="D11">
                         <label for="D11">Install ProtonPass App and/or Browser Extension</label>
-                        <a href="https://proton.me/pass/download" target="_blank" rel="noopener" class="step-link">ProtonPass Download Page↗</a>
+                        <a href="https://proton.me/pass/download" target="_blank" rel="noopener" class="step-link">ProtonPass Download Page</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
@@ -485,7 +499,7 @@
                 <div class="step"> 
                     <input type="checkbox" id="B13"> 
                     <label for="B13">Withdraw/Earn $1000 cash</label>
-                    <a href="https://www.sidehustlenation.com/how-to-make-500-fast/" target="_blank" rel="noopener" class="step-link">List of Money Making Apps↗</a>
+                    <a href="https://www.sidehustlenation.com/how-to-make-500-fast/" target="_blank" rel="noopener" class="step-link">List of Money Making Apps</a>
                 </div>
             <!-- \/ Parent Step \/ -->
                 <div class="step parent-step">
@@ -501,61 +515,61 @@
                     <div class="step">
                         <input type="checkbox" id="D15">
                         <label for="D15">Birth Certificates</label>
-                        <a href="https://www.cdc.gov/nchs/w2w/index.htm" target="_blank" rel="noopener" class="step-link">Locate Vital Records↗</a>
+                        <a href="https://www.cdc.gov/nchs/w2w/index.htm" target="_blank" rel="noopener" class="step-link">Locate Vital Records</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D16">
                         <label for="D16">Social Security Cards</label>
-                        <a href="https://www.ssa.gov/number-card#issnrc" target="_blank" rel="noopener" class="step-link">Request SSN Card↗</a>
+                        <a href="https://www.ssa.gov/number-card#issnrc" target="_blank" rel="noopener" class="step-link">Request SSN Card</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D17">
                         <label for="D17">State License</label>
-                        <a href="https://www.usa.gov/state-motor-vehicle-services" target="_blank" rel="noopener" class="step-link">Locate DMV Site↗</a>
+                        <a href="https://www.usa.gov/state-motor-vehicle-services" target="_blank" rel="noopener" class="step-link">Locate DMV Site</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D18">
                         <label for="D18">Passports</label>
-                        <a href="https://travel.state.gov/passport" target="_blank" rel="noopener" class="step-link">Apply for U.S. Passport↗</a>
+                        <a href="https://travel.state.gov/passport" target="_blank" rel="noopener" class="step-link">Apply for U.S. Passport</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D19">
                         <label for="D19">Immunization records</label>
-                        <a href="https://www.cdc.gov/vaccines/programs/iis/contacts-locate-records.html" target="_blank" rel="noopener" class="step-link">Locate Immunization Records↗</a>
+                        <a href="https://www.cdc.gov/vaccines/programs/iis/contacts-locate-records.html" target="_blank" rel="noopener" class="step-link">Locate Immunization Records</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D20">
                         <label for="D20">Proof of highest education or transcripts</label>
-                        <a href="https://nces.ed.gov/globallocator/" target="_blank" rel="noopener" class="step-link">Find Education Transcripts↗</a>
+                        <a href="https://nces.ed.gov/globallocator/" target="_blank" rel="noopener" class="step-link">Find Education Transcripts</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D21">
                         <label for="D21">Marriage Certificates</label>
-                        <a href="https://www.cdc.gov/nchs/w2w/index.htm" target="_blank" rel="noopener" class="step-link">Locate Vital Records↗</a>
+                        <a href="https://www.cdc.gov/nchs/w2w/index.htm" target="_blank" rel="noopener" class="step-link">Locate Vital Records</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 </div>
                 <div class="step"> 
                     <input type="checkbox" id="B22"> 
                     <label for="B22">Upload first copies to ProtonDrive</label>
-                    <a href="https://proton.me/drive" target="_blank" rel="noopener" class="step-link">Log in to ProtonDrive↗</a>
+                    <a href="https://proton.me/drive" target="_blank" rel="noopener" class="step-link">Log in to ProtonDrive</a>
                 </div>
                 <div class="step"> 
                     <input type="checkbox" id="B23"> 
                     <label for="B23">Store second copies on a USB, encrypt it, and keep on your keychain.</label>
-                    <a href="https://nordvpn.com/blog/how-to-encrypt-flash-drive/" target="_blank" rel="noopener" class="step-link">How to Encrypt a USB↗</a>
+                    <a href="https://nordvpn.com/blog/how-to-encrypt-flash-drive/" target="_blank" rel="noopener" class="step-link">How to Encrypt a USB</a>
                 </div>
             <!-- \/ Parent Step \/ -->
                 <div class="step parent-step">
@@ -571,56 +585,56 @@
                     <div class="step">
                         <input type="checkbox" id="D25">
                         <label for="D25">Cargo Packs</label>
-                        <a href="https://a.co/d/6zP8lG5" target="_blank" rel="noopener" class="step-link">Cargo Pack Example↗</a>
+                        <a href="https://a.co/d/6zP8lG5" target="_blank" rel="noopener" class="step-link">Cargo Pack Example</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D26">
                         <label for="D26">Cash & vital docs in a weatherproof bag</label>
-                        <a href="https://a.co/d/65Ku6Qg" target="_blank" rel="noopener" class="step-link">Weatherproof Bag Example↗</a>
+                        <a href="https://a.co/d/65Ku6Qg" target="_blank" rel="noopener" class="step-link">Weatherproof Bag Example</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D27">
                         <label for="D27">Water Bottle & Filter</label>
-                        <a href="https://a.co/d/6LkC2Ld" target="_blank" rel="noopener" class="step-link">Water Filter Example↗</a>
+                        <a href="https://a.co/d/6LkC2Ld" target="_blank" rel="noopener" class="step-link">Water Filter Example</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D28">
                         <label for="D28">First Aid Kit</label>
-                        <a href="https://a.co/d/16Gk1O6" target="_blank" rel="noopener" class="step-link">First Aid Kit Example↗</a>
+                        <a href="https://a.co/d/16Gk1O6" target="_blank" rel="noopener" class="step-link">First Aid Kit Example</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D29">
                         <label for="D29">Fire Starter</label>
-                        <a href="https://a.co/d/917zS7w" target="_blank" rel="noopener" class="step-link">Fire Starter Example↗</a>
+                        <a href="https://a.co/d/917zS7w" target="_blank" rel="noopener" class="step-link">Fire Starter Example</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D30">
                         <label for="D30">Multi-tool or Swiss Army knife</label>
-                        <a href="https://a.co/d/hjFXFSi" target="_blank" rel="noopener" class="step-link">Multi-tool Example↗</a>
+                        <a href="https://a.co/d/hjFXFSi" target="_blank" rel="noopener" class="step-link">Multi-tool Example</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D31">
                         <label for="D31">Emergency Blanket</label>
-                        <a href="https://a.co/d/aOFrVan" target="_blank" rel="noopener" class="step-link">Emergency Blanket Example↗</a>
+                        <a href="https://a.co/d/aOFrVan" target="_blank" rel="noopener" class="step-link">Emergency Blanket Example</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
                     <div class="step">
                         <input type="checkbox" id="D32">
                         <label for="D32">Power-bank Radio Combo</label>
-                        <a href="https://a.co/d/d26rbQy" target="_blank" rel="noopener" class="step-link">Power Bank Example↗</a>
+                        <a href="https://a.co/d/d26rbQy" target="_blank" rel="noopener" class="step-link">Power Bank Example</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
@@ -645,7 +659,7 @@
                     <div class="step">
                         <input type="checkbox" id="D36">
                         <label for="D36">Basic hygiene supplies</label>
-                        <a href="https://a.co/d/hb1SBA7" target="_blank" rel="noopener" class="step-link">Hygiene Supplies Example↗</a>
+                        <a href="https://a.co/d/hb1SBA7" target="_blank" rel="noopener" class="step-link">Hygiene Supplies Example</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 </div>
@@ -671,7 +685,7 @@
                     <div class="step">
                         <input type="checkbox" id="D40">
                         <label for="D40">Download or bookmark 'Goods Unite Us'</label>
-                        <a href="https://www.goodsuniteus.com" target="_blank" rel="noopener" class="step-link">Goods Unite Us webite↗</a>
+                        <a href="https://www.goodsuniteus.com" target="_blank" rel="noopener" class="step-link">Goods Unite Us webite</a>
                     </div>
                 <!-- ^Sub-Step^ -->
                 <!--</div>-->
@@ -690,7 +704,7 @@
                 <div class="step"> 
                     <input type="checkbox" id="B43"> 
                     <label for="B43">Install and Use Proton VPN</label>
-                    <a href="https://www.techrepublic.com/article/how-to-use-proton-vpn/" target="_blank" rel="noopener" class="step-link">Proton VPN Guide↗</a>
+                    <a href="https://www.techrepublic.com/article/how-to-use-proton-vpn/" target="_blank" rel="noopener" class="step-link">Proton VPN Guide</a>
                 </div>
             </div>
             <!--^Section-Content^-->
